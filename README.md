@@ -12,8 +12,8 @@ podman build -t dci-utils .
 . dcirc.sh
 podman run -v /opt/dci:/opt -e DCI_CLIENT_ID=$DCI_CLIENT_ID \
                             -e DCI_API_SECRET=$DCI_API_SECRET \
-                            -e DCI_CS_URL=$DCI_CS_URL dci-utils check_kernel.sh \
-                            --filter compose:candidate RHEL-8.8 /opt
+                            -e DCI_CS_URL=$DCI_CS_URL quay.io/distributedci/dci-utils \
+                            check_kernel.sh --filter compose:candidate RHEL-8.8 /opt
 ```
 
 # Same as above but also download the compose if the kernel is new
@@ -22,10 +22,10 @@ podman run -v /opt/dci:/opt -e DCI_CLIENT_ID=$DCI_CLIENT_ID \
 . dcirc.sh
 podman run -v /opt/dci:/opt -e DCI_CLIENT_ID=$DCI_CLIENT_ID \
                             -e DCI_API_SECRET=$DCI_API_SECRET \
-                            -e DCI_CS_URL=$DCI_CS_URL dci-utils check_kernel.sh \
-                            --filter compose:candidate RHEL-8.8 /opt && \
+                            -e DCI_CS_URL=$DCI_CS_URL quay.io/distributedci/dci-utils \
+                            check_kernel.sh --filter compose:candidate RHEL-8.8 /opt && \
 podman run -v /opt/dci:/opt -e DCI_CLIENT_ID=$DCI_CLIENT_ID \
                             -e DCI_API_SECRET=$DCI_API_SECRET \
-                            -e DCI_CS_URL=$DCI_CS_URL dci-utils dci-downloader \
-                            --filter compose:candidate RHEL-8.8 /opt
+                            -e DCI_CS_URL=$DCI_CS_URL quay.io/distributedci/dci-utils \
+                            dci-downloader --filter compose:candidate RHEL-8.8 /opt
 ```
